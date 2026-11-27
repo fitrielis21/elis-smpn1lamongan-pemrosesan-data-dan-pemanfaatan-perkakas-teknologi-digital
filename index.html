@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>CBT Informatika Kelas 9 — Word & Excel</title>
+<style>
+:root{--bg:#f2f6fd;--card:#fff;--ink:#1c2740;--mut:#5d6b88;--pri:#2457d6;--pri2:#1b43a8;--soft:#e8efff;--ok:#16a34a;--okbg:#e7f7ee;--warn:#d97706;--warnbg:#fff4e0;--bad:#dc2626;--badbg:#fdeaea;--line:#dfe6f3;--r:16px}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;font-size:16px}
+h1,h2,h3{line-height:1.25;margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 2px 10px rgba(36,87,214,.06)}
+.btn{border:0;border-radius:12px;padding:.75rem 1.2rem;font-weight:600;cursor:pointer;background:var(--pri);color:#fff;transition:.15s;font-size:1rem}
+.btn:hover{background:var(--pri2)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.ghost{background:#fff;color:var(--pri);border:1.5px solid var(--pri)}
+.btn.ghost:hover{background:var(--soft)}
+.btn.ok{background:var(--ok)}.btn.bad{background:var(--bad)}.btn.gray{background:#e9edf5;color:var(--ink)}
+.btn.sm{padding:.45rem .8rem;font-size:.9rem;border-radius:10px}
+.tag{display:inline-block;border-radius:999px;padding:.15rem .7rem;font-size:.8rem;font-weight:700}
+.tag.sec{background:var(--soft);color:var(--pri2)}
+.tag.hots{background:var(--warnbg);color:var(--warn)}
+.tag.kasus{background:#e6f6f4;color:#0f766e}
+.wrap{max-width:880px;margin:0 auto;padding:1.2rem}
+
+/* ---------- Halaman awal ---------- */
+.hero{background:linear-gradient(135deg,#2457d6 0%,#3d7bf0 55%,#19b3a6 120%);color:#fff;border-radius:22px;padding:2rem 1.5rem;text-align:center;position:relative;overflow:hidden}
+.hero .ico{font-size:2.6rem;letter-spacing:.4rem}
+.hero h1{font-size:clamp(1.5rem,4.5vw,2.2rem);margin:.4rem 0 .3rem}
+.hero p{margin:.2rem 0;opacity:.95}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-top:1rem}
+.chips span{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:.3rem .9rem;font-size:.9rem;font-weight:600}
+.grid2{display:grid;gap:1rem;margin-top:1rem}
+@media(min-width:760px){.grid2{grid-template-columns:1fr 1fr}}
+.pad{padding:1.2rem 1.3rem}
+.pad h2{font-size:1.15rem;margin-bottom:.7rem}
+.rules{margin:0;padding-left:1.2rem}.rules li{margin:.45rem 0}
+.rules b.r{color:var(--bad)}
+.field{margin-bottom:.9rem}
+.field label{display:block;font-weight:600;margin-bottom:.25rem;font-size:.95rem}
+.field input,.field select{width:100%;padding:.7rem .8rem;border:1.5px solid var(--line);border-radius:12px;background:#fbfcff;outline:none}
+.field input:focus,.field select:focus{border-color:var(--pri);box-shadow:0 0 0 3px rgba(36,87,214,.15)}
+.agree{display:flex;gap:.6rem;align-items:flex-start;font-size:.93rem;margin:.4rem 0 1rem}
+.agree input{margin-top:.3rem;width:1.1rem;height:1.1rem}
+.err{background:var(--badbg);color:var(--bad);border:1px solid #f4c0c0;border-radius:12px;padding:.7rem .9rem;margin-bottom:.9rem;font-weight:600}
+.foot{text-align:center;color:var(--mut);font-size:.85rem;margin:1.4rem 0 .5rem}
+.foot a{color:var(--mut);cursor:pointer;text-decoration:underline}
+
+/* ---------- Halaman ujian ---------- */
+.xbar{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:.5rem .9rem;align-items:center;justify-content:space-between;padding:.6rem 1rem}
+.xbar .who{display:flex;flex-direction:column;line-height:1.2;min-width:0}
+.xbar .who b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:46vw}
+.xbar .who span{font-size:.8rem;color:var(--mut)}
+.chip{background:var(--soft);border-radius:999px;padding:.35rem .9rem;font-weight:700;white-space:nowrap}
+.chip.timer{font-variant-numeric:tabular-nums}
+.chip.low{background:var(--badbg);color:var(--bad);animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.6}}
+.hearts{letter-spacing:.1rem}
+.pbar{height:6px;background:#e5ebf7}.pbar i{display:block;height:100%;background:linear-gradient(90deg,var(--pri),#19b3a6);width:0;transition:.3s}
+.xwrap{max-width:1100px;margin:0 auto;padding:1rem;display:grid;gap:1rem}
+@media(min-width:920px){.xwrap{grid-template-columns:1fr 290px;align-items:start}.nav{position:sticky;top:84px}}
+.q{padding:1.3rem 1.4rem}
+.qhead{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.9rem}
+.qno{font-weight:800;font-size:1.1rem;color:var(--pri)}
+.stim{background:#f6f9ff;border-left:4px solid var(--pri);border-radius:10px;padding:.8rem 1rem;margin-bottom:.9rem;white-space:pre-line}
+.qtext{font-size:1.1rem;font-weight:600;margin:.2rem 0 .5rem}
+.hint{color:var(--mut);font-size:.9rem;margin-bottom:.8rem}
+.opts{display:grid;gap:.6rem}
+.opt{display:flex;gap:.8rem;align-items:flex-start;border:1.5px solid var(--line);border-radius:14px;padding:.75rem .9rem;cursor:pointer;background:#fff;transition:.12s}
+.opt:hover{border-color:var(--pri);background:#f7faff}
+.opt.sel{border-color:var(--pri);background:var(--soft)}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt .lt{flex:none;width:2rem;height:2rem;border-radius:50%;background:#eef2fb;display:grid;place-items:center;font-weight:800;color:var(--pri2)}
+.opt.sel .lt{background:var(--pri);color:#fff}
+.opt.chk .lt{border-radius:8px}
+.opt .tx{padding-top:.2rem}
+.pair{display:grid;gap:.4rem;padding:.8rem;border:1.5px solid var(--line);border-radius:14px;margin-bottom:.6rem}
+@media(min-width:700px){.pair{grid-template-columns:1fr 1fr;align-items:center;gap:1rem}}
+.pair .pl{font-weight:600}
+.pair select{width:100%;padding:.65rem;border-radius:10px;border:1.5px solid var(--line);background:#fbfcff}
+.pair.done{border-color:var(--pri);background:#f7faff}
+.qfoot{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:space-between;margin-top:1.2rem;padding-top:1rem;border-top:1px dashed var(--line)}
+.qfoot .btn.flag.on{background:var(--warn);color:#fff;border-color:var(--warn)}
+.nav{padding:1rem}
+.nav h3{font-size:1rem;margin-bottom:.6rem}
+.ngrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(40px,1fr));gap:.4rem}
+.nb{height:40px;border-radius:10px;border:1.5px solid var(--line);background:#fff;font-weight:700;cursor:pointer;position:relative}
+.nb.ans{background:var(--pri);color:#fff;border-color:var(--pri)}
+.nb.flg{background:var(--warn);color:#fff;border-color:var(--warn)}
+.nb.cur{outline:3px solid #19b3a6;outline-offset:1px}
+.legend{display:flex;flex-wrap:wrap;gap:.3rem .9rem;font-size:.8rem;color:var(--mut);margin:.8rem 0}
+.legend i{display:inline-block;width:.8rem;height:.8rem;border-radius:4px;margin-right:.3rem;vertical-align:-1px;border:1px solid var(--line)}
+.noselect,.noselect *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+
+/* ---------- Modal & toast ---------- */
+.ov{position:fixed;inset:0;background:rgba(18,28,56,.62);display:grid;place-items:center;z-index:100;padding:1rem;backdrop-filter:blur(3px)}
+.modal{background:#fff;border-radius:20px;max-width:520px;width:100%;padding:1.5rem;max-height:92vh;overflow:auto;text-align:center}
+.modal.left{text-align:left}
+.micon{font-size:3rem;line-height:1}
+.modal h3{font-size:1.3rem;margin:.5rem 0}
+.mbody{color:var(--ink);margin-bottom:1rem}
+.macts{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}
+.modal textarea{width:100%;min-height:140px;border:1.5px solid var(--line);border-radius:12px;padding:.7rem;font-family:ui-monospace,Consolas,monospace;font-size:.85rem}
+.modal input[type=password],.modal input[type=text]{width:100%;padding:.7rem;border:1.5px solid var(--line);border-radius:12px}
+#toast{position:fixed;left:50%;bottom:1.2rem;transform:translateX(-50%) translateY(120px);background:#1c2740;color:#fff;padding:.7rem 1.1rem;border-radius:12px;z-index:200;transition:.3s;max-width:92vw;text-align:center}
+#toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ---------- Hasil ---------- */
+.res{text-align:center;padding:1.8rem 1.3rem}
+.big{font-size:4.2rem;font-weight:900;line-height:1;margin:.5rem 0;color:var(--pri)}
+.big.ok{color:var(--ok)}.big.bad{color:var(--bad)}
+.badge{display:inline-block;padding:.35rem 1rem;border-radius:999px;font-weight:800}
+.badge.ok{background:var(--okbg);color:var(--ok)}.badge.bad{background:var(--badbg);color:var(--bad)}.badge.warn{background:var(--warnbg);color:var(--warn)}
+table.t{border-collapse:collapse;width:100%;font-size:.92rem}
+table.t th,table.t td{border:1px solid var(--line);padding:.45rem .6rem;text-align:left}
+table.t th{background:#eef3ff;position:sticky;top:0;white-space:nowrap}
+table.t td.n,table.t th.n{text-align:center}
+#rekap td{white-space:nowrap}
+.bukti{background:#fff8e6;border:1px solid #f4d9a6;border-radius:14px;padding:1rem;margin-top:1rem;text-align:left}
+a.btn{text-decoration:none;display:inline-block;text-align:center}
+.codebox{background:#f6f8fc;border:1px dashed #aab7d4;border-radius:12px;padding:.7rem;font-family:ui-monospace,Consolas,monospace;font-size:.75rem;word-break:break-all;max-height:110px;overflow:auto;text-align:left}
+
+/* ---------- Panel guru ---------- */
+.tp{max-width:1250px;margin:0 auto;padding:1rem}
+.tp .top{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:space-between;align-items:center;margin-bottom:1rem}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.7rem;margin-bottom:1rem}
+.stat{padding:.8rem 1rem}.stat b{display:block;font-size:1.6rem;color:var(--pri)}.stat span{color:var(--mut);font-size:.85rem}
+.tools{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.8rem}
+.tools select,.tools input{padding:.5rem .7rem;border:1.5px solid var(--line);border-radius:10px}
+.tscroll{overflow:auto;max-height:68vh;border-radius:12px}
+.st-selesai{color:var(--ok);font-weight:700}.st-waktu{color:var(--warn);font-weight:700}.st-pelanggaran{color:var(--bad);font-weight:700}
+.empty{text-align:center;color:var(--mut);padding:2rem}
+
+@media print{
+  body.exam #app,body.exam #modalRoot{display:none!important}
+  body.printing .tools,body.printing .top,body.printing .stats,body.printing .noprint{display:none!important}
+  body{background:#fff}.card{box-shadow:none;border:0}.tscroll{max-height:none;overflow:visible}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="modalRoot"></div>
+<div id="toast"></div>
+
+<script>
+/* =====================================================================
+   DATA-SOAL.JS  —  Pengaturan & Bank Soal
+   Guru cukup mengedit file ini (tidak perlu menyentuh index.html).
+   ===================================================================== */
+
+const CONFIG = {
+  // ---------- Identitas ----------
+  judul: "Sumatif Harian Informatika",
+  subjudul: "Microsoft Word & Excel — Pengolahan, Analisis, dan Integrasi Data",
+  sekolah: "SMP Negeri 1 Lamongan",          // ← ganti nama sekolah
+  guru: "Elis Fitrianingsih, S.Kom., M.Kom.",                // ← ganti nama guru
+  mapel: "Informatika",
+  tingkat: "Kelas 9",
+  daftarKelas: ["9A", "9B", "9C", "9D", "9E", "9F", "9G", "9H", "9I", "9J", "9K"],
+
+  // ---------- Aturan ujian ----------
+  durasiMenit: 60,          // waktu mengerjakan
+  kkm: 82,                  // batas ketuntasan
+  maksPelanggaran: 3,       // jumlah kesempatan; pelanggaran ke-3 = ujian dihentikan
+  wajibLayarPenuh: true,    // minta mode layar penuh (di HP/tablet tertentu tidak didukung → otomatis dilewati)
+  satuKaliPerSiswa: true,   // siswa (nama+kelas+absen) hanya boleh mengerjakan 1x (dicek lintas perangkat bila sheetsUrl diisi)
+  kodeUjian: "",            // isi mis. "INFO9" bila ingin siswa memasukkan kode ujian dari guru; kosong = tanpa kode
+  tampilkanNilaiKeSiswa: true,   // false = siswa tidak melihat nilai setelah selesai
+  tampilkanKodeHasil: true,      // tampilkan "bukti hasil" (WhatsApp/unduh) HANYA bila pengiriman ke pusat gagal
+  waGuru: "",               // nomor WhatsApp guru format 628xxxxxxxxxx (tanpa + dan 0 di depan). Kosong = siswa memilih kontak sendiri
+  emailGuru: "",            // (opsional) alamat email guru untuk tombol "Kirim lewat email"
+
+  // ---------- Panel guru ----------
+  passwordGuru: "guru123",  // ← WAJIB diganti. (Catatan: web statis → ini hanya pengaman ringan, bukan keamanan sungguhan)
+  garam: "ganti-teks-rahasia-ini",  // teks bebas untuk tanda-tangan kode hasil
+
+  // ---------- Pengumpulan nilai otomatis (opsional) ----------
+  sheetsUrl: "",            // URL penyimpanan pusat (Google Apps Script, lihat README). WAJIB diisi agar nilai dari SEMUA HP/laptop terekap otomatis
+  sheetsToken: "kYyOqkyRz2vmm4lDwzlj",   // sudah disamakan dengan Code.gs, tidak perlu diubah
+
+  // ---------- Bobot skor (total dinormalkan ke 100) ----------
+  poin: { pg: 2, kompleks: 4, jodoh: 4 }   // 30×2 + 5×4 + 5×4 = 100
+};
+
+/* =====================================================================
+   BANK SOAL — 40 butir: 20 butir bersumber dari modul "Latihan Excel dan Laporan Word Kelas 9"
+   (data survei 10 siswa) dan 20 butir disusun dari Capaian Pembelajaran (CP).
+   Komposisi: HOTS 4 butir (10%, C5); 36 butir lainnya C2–C4.
+   Catatan: pemisah argumen rumus bisa ; atau , mengikuti pengaturan komputer.
+   hots:true / kasus:true / lvl (C1–C6) hanya penanda untuk guru (TIDAK ditampilkan ke siswa);
+   stim = teks kasus / stimulus.
+   ===================================================================== */
+
+/* A. PILIHAN GANDA (30 soal) — a = indeks jawaban benar (0 = opsi pertama) */
+const SOAL_PG = [
+  { lvl: 'C2', q: "Fungsi Freeze Panes pada baris pertama tabel data (baris judul) adalah …",
+    o: ["Menghapus baris judul dari tabel", "Menggabungkan seluruh sel pada baris judul", "Mengunci baris judul agar tetap terlihat saat tabel digulir ke bawah", "Mengubah baris judul menjadi grafik"], a: 2 },
+  { lvl: 'C3', q: "Data jam gawai berada di D2:D11. Rumus untuk menghitung rata-rata jam gawai per hari adalah …",
+    o: ["=SUM(D2:D11)", "=AVERAGE(D2:D11)", "=MAX(D2:D11)", "=COUNT(D2:D11)"], a: 1 },
+  { lvl: 'C3', q: "Siswa dinyatakan tuntas bila nilai ≥ 75. Rumus untuk menghitung banyak siswa tuntas pada F2:F11 adalah …",
+    o: ["=COUNTIF(F2:F11;\">=75\")", "=COUNT(F2:F11;75)", "=SUM(F2:F11>=75)", "=IF(F2:F11>=75)"], a: 0 },
+  { lvl: 'C3', q: "Kolom Keterangan diisi “Tuntas” bila nilai ≥ 75 dan “Remedial” bila kurang. Rumus yang tepat untuk sel G2 adalah …",
+    o: ["=IF(F2>=75;\"Remedial\";\"Tuntas\")", "=IF(F2<=75;\"Tuntas\";\"Remedial\")", "=IF(F2>=75;\"Tuntas\";\"Remedial\")", "=COUNTIF(F2;\"Tuntas\")"], a: 2 },
+  { lvl: 'C2', q: "Untuk membandingkan rata-rata nilai Kelas A dan Kelas B, jenis grafik yang tepat adalah …",
+    o: ["Diagram batang (clustered column)", "Diagram sebar (scatter)", "Diagram lingkaran", "Diagram radar"], a: 0 },
+  { lvl: 'C2', q: "Untuk melihat pola hubungan antara jam gawai (sumbu X) dan nilai Informatika (sumbu Y), jenis grafik yang paling tepat adalah …",
+    o: ["Diagram lingkaran", "Diagram sebar (scatter) dengan garis tren", "Diagram batang bertumpuk", "Diagram donat"], a: 1 },
+  { lvl: 'C2', q: "Pada laporan, keterangan otomatis (Insert Caption) diletakkan …",
+    o: ["Tabel: di atas tabel; gambar: di bawah gambar", "Tabel: di bawah tabel; gambar: di atas gambar", "Selalu di bawah, baik tabel maupun gambar", "Selalu di halaman terakhir"], a: 0 },
+  { kasus: true, lvl: 'C4', 
+    stim: "Kategori gawai: Rendah = 2 jam atau kurang, Sedang = 3 sampai 4 jam, Tinggi = 5 jam atau lebih. Jam gawai siswa ada di D2.",
+    q: "Rumus IF bertingkat yang benar untuk kolom Kategori_Gawai adalah …",
+    o: ["=IF(D2<=4;\"Sedang\";IF(D2<=2;\"Rendah\";\"Tinggi\"))", "=IF(D2<=2;\"Rendah\";IF(D2<=4;\"Sedang\";\"Tinggi\"))", "=IF(D2<2;\"Rendah\";IF(D2<4;\"Sedang\";\"Tinggi\"))", "=IF(D2>=5;\"Rendah\";IF(D2>=3;\"Sedang\";\"Tinggi\"))"], a: 1 },
+  { kasus: true, lvl: 'C3', 
+    stim: "Pada data survei, Rani menyaring (Filter) siswa dengan jam gawai ≥ 4: Ayu (70), Dimas (75), Eka (65), Hadi (60), dan Joko (78).",
+    q: "Jumlah siswa dan rata-rata nilai hasil penyaringan tersebut adalah …",
+    o: ["5 siswa, rata-rata 78,6", "5 siswa, rata-rata 69,6", "4 siswa, rata-rata 69,6", "3 siswa, rata-rata 65,0"], a: 1 },
+  { kasus: true, lvl: 'C4', 
+    stim: "Hadi ternyata salah dicatat. Nilainya diperbaiki di Excel dari 60 menjadi 72. Sebelumnya rata-rata nilai 78,6 dan 7 siswa tuntas.",
+    q: "Setelah perbaikan, pernyataan yang benar adalah …",
+    o: ["Rata-rata nilai tetap 78,6", "Rata-rata nilai menjadi 79,8 dan jumlah siswa tuntas tetap 7", "Jumlah siswa tuntas menjadi 8", "Nilai terendah tetap 60"], a: 1 },
+  { kasus: true, lvl: 'C4', 
+    stim: "Di laporan Word, Grafik 1 ditempel dengan Keep Source & Link Data, Grafik 2 sebagai Picture, dan Grafik 3 dengan Embed Workbook. Setelah nilai di Excel diubah, pengguna memilih Update Link.",
+    q: "Grafik yang ikut berubah mengikuti data Excel adalah …",
+    o: ["Grafik 2 (Picture)", "Grafik 3 (Embed Workbook)", "Grafik 1 (tertaut)", "Ketiga grafik berubah"], a: 2 },
+  { kasus: true, lvl: 'C3', 
+    stim: "Laporan akan dikirim ke wali kelas lewat e-mail tanpa menyertakan file Excel asli, tetapi grafiknya masih harus dapat diedit datanya di Word.",
+    q: "Metode tempel yang paling tepat adalah …",
+    o: ["Picture (gambar)", "Keep Source & Link Data (tertaut)", "Embed Workbook (tersemat)", "Mengetik ulang grafik secara manual"], a: 2 },
+  { kasus: true, lvl: 'C3', 
+    stim: "Laporan memiliki sampul, daftar isi, dan isi. Nomor halaman hanya boleh muncul mulai halaman isi, bukan pada sampul.",
+    q: "Langkah yang paling tepat adalah …",
+    o: ["Menekan Enter berkali-kali sampai nomor tampil di halaman isi", "Memisahkan sampul dengan Section Break, lalu memasang nomor halaman di footer mulai bagian isi", "Memberi warna putih pada nomor halaman sampul", "Menghapus sampul dari dokumen"], a: 1 },
+  { hots: true, lvl: 'C5', 
+    stim: "Koefisien korelasi jam gawai dan nilai pada data survei adalah sekitar −0,95.",
+    q: "Tafsiran yang paling tepat adalah …",
+    o: ["Hubungan negatif yang kuat: makin banyak jam gawai, nilai cenderung makin rendah, tetapi ini belum membuktikan sebab-akibat", "Hubungan positif yang kuat: makin banyak jam gawai, nilai makin tinggi", "Tidak ada hubungan sama sekali karena angkanya negatif", "Gawai pasti menjadi penyebab turunnya nilai setiap siswa"], a: 0 },
+  { kasus: true, lvl: 'C4', 
+    stim: "Hasil survei: rata-rata nilai Kelas A = 76,0 dengan rata-rata jam gawai 4,0 jam; Kelas B = 81,2 dengan rata-rata jam gawai 3,0 jam. Sampel hanya 10 siswa.",
+    q: "Pernyataan yang paling tepat dan hati-hati adalah …",
+    o: ["Kelas B bernilai lebih tinggi dan jam gawainya lebih sedikit, sejalan dengan pola korelasi, tetapi belum membuktikan sebab-akibat karena sampel kecil", "Gawai pasti membuat nilai Kelas A turun 5,2 poin", "Hasil ini berlaku untuk seluruh siswa di Indonesia", "Jam gawai tidak berhubungan sama sekali dengan nilai"], a: 0 },
+  { lvl: 'C2', q: "Pernyataan yang tepat tentang data dan informasi adalah …",
+    o: ["Daftar nilai mentah 30 siswa adalah data, sedangkan peringkat kelas hasil pengolahannya adalah informasi", "Peringkat kelas adalah data, sedangkan daftar nilai mentah adalah informasi", "Data dan informasi sama persis sehingga tidak perlu dibedakan", "Informasi tidak pernah berasal dari pengolahan data"], a: 0 },
+  { kasus: true, lvl: 'C3',
+    stim: "Guru ingin mengirim daftar nilai agar dapat dibuka di berbagai aplikasi spreadsheet (Excel, LibreOffice, Google Sheets) dengan ukuran berkas kecil dan hanya berisi data tabel.",
+    q: "Format berkas yang paling tepat untuk keperluan tersebut adalah …",
+    o: ["PPTX (.pptx)", "JPG (.jpg)", "CSV (.csv)", "DOCX (.docx)"], a: 2 },
+  { kasus: true, lvl: 'C4',
+    stim: "Tim literasi mengumpulkan jawaban formulir daring dari 120 siswa. Sebelum menghitung rata-rata, mereka menghapus 6 baris ganda dan memperbaiki penulisan nama kelas yang berbeda-beda (9A, 9 A, 9a).",
+    q: "Alasan paling tepat mengapa pembersihan data dilakukan sebelum perhitungan adalah …",
+    o: ["Agar tabel terlihat lebih berwarna", "Karena data ganda dan penulisan yang tidak seragam dapat membuat hasil perhitungan dan pengelompokan menjadi keliru", "Agar ukuran berkas menjadi lebih kecil sehingga cepat dikirim", "Karena Excel tidak dapat menghitung bila ada lebih dari 100 baris"], a: 1 },
+  { lvl: 'C2', q: "Masalah dasar pemrosesan data berupa data yang sama tercatat berulang kali disebut …",
+    o: ["Redundansi (duplikasi) data", "Enkripsi data", "Kompresi data", "Sinkronisasi data"], a: 0 },
+  { kasus: true, lvl: 'C3',
+    stim: "Dalam satu kolom Kelas tertulis “9A”, “9 A”, dan “IX-A” untuk kelas yang sama, sehingga ketika disaring, data kelas 9A tidak lengkap.",
+    q: "Masalah dasar data yang terjadi dan penanganan yang tepat adalah …",
+    o: ["Kehilangan data; ganti komputer dengan yang baru", "Data terenkripsi; masukkan kata sandi", "Inkonsistensi data; seragamkan penulisan dan gunakan daftar pilihan (Data Validation) agar isian seragam", "Redundansi data; hapus seluruh kolom Kelas"], a: 2 },
+  { kasus: true, lvl: 'C3',
+    stim: "Panitia menyiapkan lembar isian nilai di Excel dan ingin sel nilai hanya menerima angka bulat 0 sampai 100.",
+    q: "Fitur yang tepat untuk mencegah kesalahan input tersebut adalah …",
+    o: ["Freeze Panes", "Merge & Center", "Data Validation", "Page Break Preview"], a: 2 },
+  { kasus: true, lvl: 'C4',
+    stim: "Laptop wali kelas rusak mendadak. Satu-satunya berkas rekap nilai semester tersimpan di laptop itu dan tidak ada salinannya, sehingga seluruh data hilang.",
+    q: "Analisis penyebab dan langkah pencegahan yang paling tepat adalah …",
+    o: ["Penyebabnya nama berkas terlalu panjang; cegah dengan memperpendek nama", "Penyebabnya tidak ada cadangan (backup); cegah dengan menyimpan salinan di tempat lain, misalnya penyimpanan awan atau flashdisk", "Penyebabnya Excel versi lama; cegah dengan menginstal ulang Excel", "Penyebabnya layar kurang terang; cegah dengan mengatur kecerahan layar"], a: 1 },
+  { lvl: 'C2', q: "Berkas yang berisi data pribadi siswa (alamat dan nomor telepon) sebaiknya …",
+    o: ["Dibagikan terbuka agar mudah diakses semua orang", "Dilindungi kata sandi dan hanya dapat diakses pihak yang berwenang", "Disimpan tanpa nama berkas agar aman", "Diunggah ke media sosial sebagai arsip"], a: 1 },
+  { lvl: 'C2', q: "Pasangan perkakas dan fungsi utamanya yang benar adalah …",
+    o: ["Microsoft Word — menghitung dan menganalisis data dengan rumus", "Microsoft PowerPoint — mengolah angka dengan fungsi statistik", "Microsoft Excel — menghitung, mengolah, dan menganalisis data", "Microsoft Excel — menyusun laporan tertulis berhalaman-halaman"], a: 2 },
+  { kasus: true, lvl: 'C3',
+    stim: "Kepala sekolah meminta ringkasan hasil survei kebiasaan belajar disampaikan dalam rapat selama 5 menit.",
+    q: "Perkakas dan cara penyajian yang paling tepat adalah …",
+    o: ["Microsoft Excel, dengan menampilkan seluruh tabel mentah apa adanya", "Microsoft Word, dengan membacakan laporan 20 halaman", "Aplikasi kalkulator, dengan menunjukkan hasil hitungan satu per satu", "Microsoft PowerPoint, dengan poin singkat dan satu grafik yang jelas pada tiap slide"], a: 3 },
+  { kasus: true, lvl: 'C3',
+    stim: "Empat siswa menyusun laporan kelompok dari rumah masing-masing dan ingin mengedit dokumen yang sama secara bersamaan.",
+    q: "Pemanfaatan perkakas digital yang paling tepat adalah …",
+    o: ["Mengirim berkas bolak-balik lewat pesan lalu menggabungkannya secara manual", "Mencetak laporan lalu memotretnya", "Memakai dokumen daring bersama (misalnya Word online atau Google Docs) yang dapat diedit bersama", "Masing-masing mengetik laporan sendiri lalu memilih satu"], a: 2 },
+  { kasus: true, lvl: 'C4',
+    stim: "Seorang siswa menghitung total anggaran kegiatan dengan membuat tabel di Word dan mengetik totalnya sendiri. Ketika harga satu barang berubah, ia harus menghitung ulang semua jumlah secara manual dan sempat salah menjumlahkan.",
+    q: "Analisis yang paling tepat tentang kekurangan cara tersebut dan solusinya adalah …",
+    o: ["Tabel Word terlalu kecil; sebaiknya ukuran huruf diperbesar", "Word tidak dapat menampilkan angka; sebaiknya memakai PowerPoint", "Tabel Word tidak menghitung otomatis; sebaiknya data dihitung di Excel dengan rumus lalu hasilnya dipindahkan ke Word", "Kesalahan terjadi karena komputer lambat; sebaiknya komputer diganti"], a: 2 },
+  { kasus: true, lvl: 'C3',
+    stim: "Sebuah survei menunjukkan pembagian pengguna perangkat: ponsel 60%, laptop 25%, tablet 15%.",
+    q: "Jenis grafik yang paling tepat untuk menunjukkan bagian tiap perangkat terhadap keseluruhan adalah …",
+    o: ["Diagram sebar (scatter)", "Diagram lingkaran (pie)", "Diagram garis", "Histogram"], a: 1 },
+  { kasus: true, lvl: 'C4',
+    stim: "Penjualan koperasi sekolah (pcs): Januari 40, Februari 55, Maret 70, April 65.",
+    q: "Interpretasi yang paling tepat dari data tersebut adalah …",
+    o: ["Penjualan terus naik setiap bulan", "Penjualan terendah terjadi pada bulan Maret", "Total penjualan empat bulan adalah 250 pcs", "Penjualan naik dari Januari sampai Maret, lalu turun pada April"], a: 3 },
+  { hots: true, lvl: 'C5',
+    stim: "Tiga siswa merencanakan pengelolaan data penelitian mini.\nRencana A: semua data (mentah dan olahan) disimpan dalam satu berkas di satu flashdisk dengan nama “data.xlsx”.\nRencana B: data mentah dan data olahan disimpan di berkas terpisah dengan nama yang jelas dan bertanggal, kolom isian dibatasi dengan Data Validation, serta salinan cadangan disimpan di penyimpanan awan.\nRencana C: data diketik di Word agar rapi, lalu dihitung memakai kalkulator.",
+    q: "Rencana yang paling baik untuk menjaga keakuratan dan keamanan data beserta alasannya adalah …",
+    o: ["Rencana A, karena semua data berada di satu tempat sehingga paling praktis", "Rencana C, karena Word lebih rapi daripada Excel untuk menghitung", "Rencana A, karena nama berkas yang singkat mencegah kesalahan", "Rencana B, karena memisahkan data mentah dari olahan, membatasi kesalahan input, dan memiliki cadangan"], a: 3 }
+];
+
+/* B. PILIHAN GANDA KOMPLEKS (5 soal) — a = daftar indeks jawaban benar.
+   Skor: (benar dipilih − salah dipilih) ÷ jumlah benar, minimal 0. */
+const SOAL_KOMPLEKS = [
+  { kasus: true, lvl: 'C4', 
+    stim: "Tabel dan grafik dari Excel dipindahkan ke laporan Word dengan metode tempel yang berbeda-beda.",
+    q: "Pernyataan yang BENAR tentang metode tempel adalah …",
+    o: ["Objek tertaut (Link Data) ikut berubah setelah tautan diperbarui (Update Link) saat data Excel berubah",
+        "Gambar (Picture) tidak ikut berubah dan isinya tidak dapat diedit, hanya ukuran dan tata letaknya",
+        "Objek tersemat (Embed) berupa salinan terpisah: tidak ikut berubah, tetapi dapat diedit lewat Word",
+        "Objek tersemat (Embed) selalu otomatis berubah mengikuti file Excel asli",
+        "Tabel hasil tempel biasa otomatis berubah ketika data di Excel diperbarui"],
+    a: [0, 1, 2] },
+  { hots: true, lvl: 'C5', 
+    stim: "Hasil survei 10 siswa: rata-rata nilai 78,6; tertinggi 95 (Gita); terendah 60 (Hadi); 7 siswa tuntas (70%); rata-rata Kelas A 76,0 dan Kelas B 81,2; korelasi jam gawai–nilai sekitar −0,95.",
+    q: "Kalimat temuan yang DIDUKUNG oleh data tersebut adalah …",
+    o: ["Rata-rata nilai 78,6 dengan nilai tertinggi 95 dan terendah 60",
+        "Sebanyak 70% siswa tuntas, yaitu 7 dari 10 siswa",
+        "Rata-rata nilai Kelas B (81,2) lebih tinggi daripada Kelas A (76,0)",
+        "Jam gawai terbukti menjadi penyebab pasti turunnya nilai",
+        "Temuan ini berlaku untuk seluruh siswa SMP di Indonesia"],
+    a: [0, 1, 2] },
+  { kasus: true, lvl: 'C4', 
+    stim: "Saat memasukkan data survei, ditemukan: nilai seorang siswa tertulis 105, nama “Eka” tercatat dua kali, dan beberapa sel jam belajar kosong.",
+    q: "Pernyataan yang BENAR tentang masalah dasar pemrosesan data pada kasus tersebut adalah …",
+    o: ["Nilai 105 melanggar validitas data (di luar rentang 0–100) dan dapat dicegah dengan Data Validation",
+        "Nama ganda menimbulkan redundansi sehingga perlu diperiksa dan dihapus",
+        "Sel kosong dapat memengaruhi hasil perhitungan sehingga perlu dilengkapi atau ditangani lebih dulu",
+        "Semua masalah itu tidak berpengaruh karena komputer selalu menghitung dengan benar apa pun datanya",
+        "Solusi terbaik adalah menghapus seluruh kolom nilai lalu menghitung ulang secara manual"],
+    a: [0, 1, 2] },
+  { kasus: true, lvl: 'C3',
+    stim: "Seorang siswa menyiapkan laporan yang memuat teks, data, dan gambar dari berbagai aplikasi.",
+    q: "Pernyataan yang BENAR tentang integrasi konten antarperangkat lunak adalah …",
+    o: ["Gambar dapat disisipkan ke Word melalui Insert → Pictures lalu tata letaknya diatur dengan Wrap Text",
+        "Data berformat CSV dapat diimpor ke Excel untuk diolah",
+        "Dokumen Word dapat diekspor ke PDF agar tampilannya tetap sama di perangkat lain",
+        "Teks dari Word tidak dapat disalin ke PowerPoint sehingga harus diketik ulang",
+        "Berkas Excel tidak dapat dimasukkan ke dalam Word dengan cara apa pun"],
+    a: [0, 1, 2] },
+  { hots: true, lvl: 'C5',
+    stim: "Seorang siswa mengumpulkan laporan hasil survei dengan kondisi berikut: (1) tabel dari Excel ditempel sebagai gambar sehingga angkanya tidak dapat disunting; (2) grafik tidak memiliki judul dan satuan sumbu; (3) kesimpulan menyatakan bahwa gawai “pasti” menyebabkan nilai turun, padahal datanya hanya 10 siswa.",
+    q: "Penilaian yang TEPAT terhadap laporan tersebut adalah …",
+    o: ["Tabel yang ditempel sebagai gambar menyulitkan penyuntingan dan pembaruan jika data berubah",
+        "Grafik tanpa judul dan satuan sumbu menyulitkan pembaca menafsirkan data",
+        "Kesimpulan “pasti menyebabkan” tidak didukung oleh data yang kecil dan hanya menunjukkan hubungan",
+        "Laporan sudah sempurna karena semua unsur (tabel, grafik, kesimpulan) tersedia",
+        "Menempel semua tabel sebagai gambar selalu merupakan cara terbaik untuk laporan"],
+    a: [0, 1, 2] }
+];
+
+/* C. MENJODOHKAN (5 soal) — tiap soal 4 pasangan [pernyataan, jawaban]; pasangan pada indeks yang sama = benar. */
+const SOAL_JODOH = [
+  { lvl: 'C2', q: "Jodohkan setiap kebutuhan penyusunan laporan Word berikut dengan fitur yang tepat!",
+    pairs: [["Judul bab dan subbab agar daftar isi otomatis dapat dibuat", "Gaya Heading 1 dan Heading 2"],
+            ["Memberi nomor “Tabel 1” dan “Gambar 1” secara otomatis", "Insert Caption"],
+            ["Merujuk gambar di dalam kalimat dengan nomor yang ikut berubah", "Insert Cross-reference"],
+            ["Membuat daftar semua tabel atau gambar secara otomatis", "Insert Table of Figures"]] },
+  { kasus: true, lvl: 'C3', 
+    stim: "Kamu menyusun laporan dari hasil Excel dan harus memilih cara menempel yang berbeda sesuai kebutuhan.",
+    q: "Jodohkan setiap kebutuhan dengan metode tempel yang paling tepat!",
+    pairs: [["Grafik di Word harus ikut berubah bila data Excel diperbarui", "Keep Source & Link Data (tertaut)"],
+            ["Hasil akhir tidak akan diubah lagi dan cukup ditampilkan", "Picture (gambar)"],
+            ["Laporan dikirim tanpa file Excel, tetapi data grafik masih dapat diedit", "Embed Workbook (tersemat)"],
+            ["Tabel dapat diedit di Word dan mengikuti gaya tabel dokumen", "Use Destination Styles"]] },
+  { kasus: true, lvl: 'C4', 
+    stim: "Nilai Hadi diperbaiki dari 60 menjadi 72. Sebelumnya: rata-rata nilai 78,6; nilai terendah 60; rata-rata Kelas B 81,2; siswa tuntas 7.",
+    q: "Jodohkan setiap ukuran berikut dengan hasilnya setelah perbaikan!",
+    pairs: [["Rata-rata nilai seluruh siswa", "Menjadi 79,8"],
+            ["Nilai terendah", "Menjadi 65 (Eka)"],
+            ["Rata-rata nilai Kelas B", "Menjadi 83,6"],
+            ["Jumlah siswa tuntas", "Tetap 7 siswa"]] },
+  { lvl: 'C2', q: "Jodohkan setiap perangkat komputer berikut dengan fungsinya dalam pemrosesan data!",
+    pairs: [["Keyboard", "Perangkat input untuk memasukkan data"],
+            ["Prosesor (CPU)", "Mengolah data dan menjalankan instruksi"],
+            ["Monitor", "Perangkat output untuk menampilkan hasil"],
+            ["SSD / hard disk", "Perangkat penyimpanan data"]] },
+  { kasus: true, lvl: 'C3', q: "Jodohkan setiap contoh kasus berikut dengan jenis masalah dasar datanya!",
+    pairs: [["Nama siswa yang sama tercatat dua kali", "Redundansi (duplikasi) data"],
+            ["Nilai 150 pada skala 0–100", "Data tidak valid"],
+            ["Kolom jam belajar dibiarkan kosong", "Data tidak lengkap"],
+            ["Kelas ditulis “9A”, “9 A”, dan “IX-A”", "Data tidak konsisten"]] }
+];
+</script>
+<script>
+(function(){
+'use strict';
+
+/* =====================================================================
+   UTILITAS
+   ===================================================================== */
+const $ = (s,r=document)=>r.querySelector(s);
+function el(tag,attrs,...kids){
+  const e=document.createElement(tag);
+  for(const k in (attrs||{})){
+    const v=attrs[k];
+    if(v===false||v==null) continue;
+    if(k==='class') e.className=v;
+    else if(k.slice(0,2)==='on') e.addEventListener(k.slice(2),v);
+    else if(k==='value') e.value=v;
+    else e.setAttribute(k,v===true?'':v);
+  }
+  kids.flat(Infinity).forEach(c=>{ if(c==null||c===false) return; e.append(c.nodeType?c:document.createTextNode(String(c))); });
+  return e;
+}
+const mem={};
+function load(k,d){ try{ const v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){ return (k in mem)?JSON.parse(mem[k]):d; } }
+function save(k,v){ const s=JSON.stringify(v); try{ localStorage.setItem(k,s); }catch(e){ mem[k]=s; } }
+function del(k){ try{ localStorage.removeItem(k); }catch(e){} delete mem[k]; }
+function rnd(n){ if(window.crypto&&crypto.getRandomValues){ const a=new Uint32Array(1); crypto.getRandomValues(a); return Math.floor(a[0]/4294967296*n); } return Math.floor(Math.random()*n); }
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=rnd(i+1); const t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+const r1=x=>Math.round(x*10)/10;
+const pad2=n=>String(n).padStart(2,'0');
+const tgl=t=>{const d=new Date(t);return pad2(d.getDate())+'/'+pad2(d.getMonth()+1)+'/'+d.getFullYear();};
+const jam=t=>{const d=new Date(t);return pad2(d.getHours())+':'+pad2(d.getMinutes());};
+const mmss=ms=>{ms=Math.max(0,Math.ceil(ms/1000));return pad2(Math.floor(ms/60))+':'+pad2(ms%60);};
+const clean=s=>String(s||'').replace(/\s+/g,' ').trim();
+function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toast.h); toast.h=setTimeout(()=>t.classList.remove('show'),2600); }
+function fnv(str){ let h=0x811c9dc5; for(let i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,0x01000193)>>>0; } return h.toString(36); }
+
+/* =====================================================================
+   DATA SOAL → daftar butir bertipe
+   ===================================================================== */
+const C=CONFIG, P=C.poin;
+const ITEMS=[];
+SOAL_PG.forEach((s,i)=>ITEMS.push(Object.assign({id:'pg'+(i+1),type:'pg'},s)));
+SOAL_KOMPLEKS.forEach((s,i)=>ITEMS.push(Object.assign({id:'kx'+(i+1),type:'kompleks'},s)));
+SOAL_JODOH.forEach((s,i)=>ITEMS.push(Object.assign({id:'jd'+(i+1),type:'jodoh'},s)));
+const BY={}; ITEMS.forEach(i=>BY[i.id]=i);
+const MAX={pg:SOAL_PG.length*P.pg,kompleks:SOAL_KOMPLEKS.length*P.kompleks,jodoh:SOAL_JODOH.length*P.jodoh};
+MAX.total=MAX.pg+MAX.kompleks+MAX.jodoh;
+const SEC={pg:'A • Pilihan Ganda',kompleks:'B • Pilihan Ganda Kompleks',jodoh:'C • Menjodohkan'};
+const K_RES='cbt9_hasil_v1',K_SES='cbt9_sesi_v1',K_OUT='cbt9_outbox_v1';
+const STATUS={selesai:'Selesai',waktu:'Waktu habis',pelanggaran:'Dihentikan (pelanggaran)'};
+
+/* =====================================================================
+   STATE
+   ===================================================================== */
+let S=null;            // sesi ujian aktif
+let active=false;      // ujian sedang berjalan?
+let tm=null;           // interval timer
+let ignoreUntil=0, lastViol=0;
+
+function persist(){ if(S) save(K_SES,S); }
+
+function newSession(info){
+  const ids=t=>ITEMS.filter(i=>i.type===t).map(i=>i.id);
+  const opt={};
+  ITEMS.forEach(it=>{
+    if(it.type==='jodoh') opt[it.id]={l:shuffle(it.pairs.map((_,i)=>i)),r:shuffle(it.pairs.map((_,i)=>i))};
+    else opt[it.id]=shuffle(it.o.map((_,i)=>i));
+  });
+  return Object.assign({},info,{
+    id:Date.now().toString(36)+rnd(1e6).toString(36),
+    start:Date.now(),
+    order:[].concat(shuffle(ids('pg')),shuffle(ids('kompleks')),shuffle(ids('jodoh'))),
+    opt:opt,ans:{},flag:{},viol:[],cur:0,done:false
+  });
+}
+
+/* =====================================================================
+   PENILAIAN
+   ===================================================================== */
+function isAnswered(id){
+  const it=BY[id],a=S.ans[id];
+  if(it.type==='pg') return typeof a==='number';
+  if(it.type==='kompleks') return Array.isArray(a)&&a.length>0;
+  return !!a && it.pairs.every((_,i)=>typeof a[i]==='number');
+}
+function hitung(sess){
+  let pgBenar=0,kx=0,jd=0,kxBenar=0,jdBenar=0;
+  sess.order.forEach(id=>{
+    const it=BY[id],a=sess.ans[id];
+    if(it.type==='pg'){ if(a===it.a) pgBenar++; }
+    else if(it.type==='kompleks'){
+      const sel=Array.isArray(a)?a:[];
+      const b=sel.filter(x=>it.a.indexOf(x)>-1).length, s=sel.length-b;
+      const f=Math.max(0,(b-s)/it.a.length); kx+=f; if(f===1) kxBenar++;
+    } else {
+      const b=it.pairs.filter((_,i)=>a&&a[i]===i).length;
+      jd+=b/it.pairs.length; if(b===it.pairs.length) jdBenar++;
+    }
+  });
+  const sPg=pgBenar*P.pg, sKx=kx*P.kompleks, sJd=jd*P.jodoh;
+  return {pgBenar,kxBenar,jdBenar,pg:r1(sPg),kompleks:r1(sKx),jodoh:r1(sJd),nilai:r1((sPg+sKx+sJd)/MAX.total*100)};
+}
+
+/* =====================================================================
+   TAMPILAN: modal
+   ===================================================================== */
+function modal(o){
+  const body=el('div',{class:'mbody'});
+  [].concat(o.body||[]).forEach(b=>body.append(b.nodeType?b:document.createTextNode(b)));
+  const box=el('div',{class:'modal'+(o.left?' left':'')},
+    o.icon&&el('div',{class:'micon'},o.icon), el('h3',{},o.title), body,
+    el('div',{class:'macts'},(o.actions||[]).map(a=>el('button',{class:'btn '+(a.cls||''),onclick:a.fn},a.t))));
+  $('#modalRoot').replaceChildren(el('div',{class:'ov'},box));
+  return box;
+}
+function closeModal(){ $('#modalRoot').replaceChildren(); }
+function mount(n){ $('#app').replaceChildren(n); window.scrollTo(0,0); }
+
+/* =====================================================================
+   HALAMAN AWAL
+   ===================================================================== */
+function viewWelcome(){
+  active=false; document.body.classList.remove('exam','printing');
+  const errBox=el('div',{class:'err',style:'display:none'});
+  const fNama=el('input',{type:'text',id:'fn',maxlength:'60',autocomplete:'off',placeholder:'Tulis nama lengkap'});
+  const fKelas=el('select',{id:'fk'},el('option',{value:''},'— pilih kelas —'),C.daftarKelas.map(k=>el('option',{value:k},k)));
+  const fAbsen=el('input',{type:'number',id:'fa',min:'1',max:'99',inputmode:'numeric',placeholder:'mis. 12'});
+  const fKode=C.kodeUjian?el('input',{type:'text',id:'fc',autocomplete:'off',placeholder:'Kode dari guru'}):null;
+  const fAgree=el('input',{type:'checkbox',id:'fg'});
+  const btnStart=el('button',{class:'btn',type:'button',style:'width:100%',onclick:function(){doStart();}},'Mulai Ujian ▶');
+  const doStart=function(){
+    errBox.style.display='none';
+    const nama=clean(fNama.value),kelas=fKelas.value,absen=String(parseInt(fAbsen.value,10)||'');
+    const fail=m=>{errBox.textContent='⚠️ '+m;errBox.style.display='block';errBox.scrollIntoView({block:'center'});};
+    if(nama.length<3) return fail('Nama lengkap belum diisi.');
+    if(!kelas) return fail('Pilih kelas terlebih dahulu.');
+    if(!absen) return fail('Nomor absen belum diisi.');
+    if(fKode && clean(fKode.value).toLowerCase()!==C.kodeUjian.toLowerCase()) return fail('Kode ujian salah. Tanyakan kepada guru.');
+    if(!fAgree.checked) return fail('Centang kotak persetujuan terlebih dahulu.');
+    const key=[nama.toLowerCase(),kelas,absen].join('|');
+    const sudah='Kamu sudah mengerjakan ujian ini. Jika ada masalah, hubungi guru.';
+    const go=()=>{ S=newSession({nama:nama,kelas:kelas,absen:absen,key:key}); persist(); try{enterFS();}catch(e){} beginExam(); };
+    const lokal=()=>load(K_RES,[]).concat(load(K_OUT,[])).some(r=>r.key===key);
+    if(C.satuKaliPerSiswa && C.sheetsUrl){
+      btnStart.disabled=true; btnStart.textContent='⏳ Memeriksa…';
+      cekRemote(key).then(r=>{
+        btnStart.disabled=false; btnStart.textContent='Mulai Ujian ▶';
+        if(r===true||(r===null&&lokal())) return fail(sudah);
+        go();
+      });
+      return;
+    }
+    if(C.satuKaliPerSiswa && lokal()) return fail(sudah);
+    go();
+  };
+  const form=el('form',{class:'card pad',onsubmit:function(e){e.preventDefault();doStart();}},
+    el('h2',{},'📝 Data Peserta'),
+    el('div',{class:'field'},el('label',{for:'fn'},'Nama lengkap'),fNama),
+    el('div',{class:'field'},el('label',{for:'fk'},'Kelas'),fKelas),
+    el('div',{class:'field'},el('label',{for:'fa'},'Nomor absen'),fAbsen),
+    fKode&&el('div',{class:'field'},el('label',{for:'fc'},'Kode ujian'),fKode),
+    el('label',{class:'agree'},fAgree,el('span',{},'Saya sudah membaca aturan ujian, akan mengerjakan dengan jujur dan mandiri.')),
+    errBox,
+    btnStart
+  );
+  const nPelanggaran=C.maksPelanggaran;
+  const rules=el('div',{class:'card pad'},el('h2',{},'📌 Aturan Ujian'),
+    el('ol',{class:'rules'},
+      el('li',{},'Kerjakan ',el('b',{},'sendiri'),'. Urutan soal dan urutan pilihan jawaban setiap siswa berbeda.'),
+      el('li',{},'Kamu punya ',el('b',{class:'r'},nPelanggaran+' kesempatan'),'. Berpindah tab/aplikasi, keluar dari layar penuh, atau memuat ulang halaman dihitung ',el('b',{},'1 pelanggaran'),'.'),
+      el('li',{},'Pada pelanggaran ke-'+nPelanggaran+', ujian ',el('b',{class:'r'},'otomatis dihentikan'),' dan jawaban yang sudah ada langsung dinilai.'),
+      el('li',{},'Waktu ',el('b',{},C.durasiMenit+' menit'),'. Jawaban tersimpan otomatis. Klik “Kumpulkan” bila sudah selesai.'),
+      el('li',{},'Salin, tempel, klik kanan, dan cetak dinonaktifkan selama ujian.'),
+      el('li',{},'Pemisah argumen rumus Excel dapat berupa titik koma (;) atau koma (,) sesuai pengaturan komputer.'),
+      el('li',{},'Ujian hanya dapat dikerjakan ',el('b',{},'satu kali'),'.'),
+      el('li',{},'Bisa dikerjakan di ',el('b',{},'HP (Android/iOS) maupun laptop (Windows/macOS/lainnya)'),' memakai browser terbaru (Chrome, Safari, Edge, Firefox). Jika tautan dibuka dari WhatsApp/aplikasi lain, pilih “Buka di browser”.')
+    ));
+  const hero=el('div',{class:'hero'},
+    el('div',{class:'ico'},'📝 📊 💻'),
+    el('h1',{},C.judul),
+    el('p',{},C.subjudul),
+    el('p',{style:'font-size:.9rem'},C.sekolah+' • '+C.mapel+' '+C.tingkat),
+    el('div',{class:'chips'},
+      el('span',{},ITEMS.length+' soal'),el('span',{},C.durasiMenit+' menit'),
+      el('span',{},'❤ '+nPelanggaran+' kesempatan'),el('span',{},'KKM '+C.kkm),el('span',{},'📱💻 Semua perangkat')));
+  const tujuan=el('div',{class:'card pad',style:'margin-top:1rem'},el('h2',{},'🎯 Tujuan Pembelajaran'),
+    el('p',{style:'margin:.2rem 0'},'Peserta didik mampu memahami pemrosesan data dengan komputer, permasalahan dasar pemrosesan data, dan penggunaan perkakas komputer; serta memahami pemanfaatan perkakas teknologi digital untuk membuat laporan, presentasi, analisis, dan interpretasi data, serta proses integrasi konten antarperangkat lunak (teks, data, gambar).'));
+  const guruBar=el('div',{class:'card pad',style:'margin-top:1rem;display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;justify-content:space-between'},
+    el('div',{},el('b',{},'🔐 Khusus Guru'),el('div',{class:'hint',style:'margin:0'},'Butuh kata sandi guru.')),
+    el('div',{style:'display:flex;flex-wrap:wrap;gap:.6rem'},
+      el('button',{class:'btn ghost',type:'button',onclick:()=>askTeacher('view')},'📊 Lihat Rekap Nilai'),
+      el('button',{class:'btn',type:'button',onclick:()=>askTeacher('download')},'⬇ Unduh Nilai (.xlsx)')));
+  const foot=el('div',{class:'foot'},'Guru: '+C.guru+' • ',el('a',{onclick:recallDlg},'Ambil kembali bukti hasilku'));
+  mount(el('div',{class:'wrap'},hero,tujuan,el('div',{class:'grid2'},rules,form),guruBar,foot));
+}
+
+/* =====================================================================
+   FULLSCREEN
+   ===================================================================== */
+const fsOK=()=>C.wajibLayarPenuh&&(document.fullscreenEnabled||document.webkitFullscreenEnabled);
+const inFS=()=>!!(document.fullscreenElement||document.webkitFullscreenElement);
+function enterFS(){
+  if(!fsOK()||inFS()) return;
+  ignoreUntil=Date.now()+2500;
+  const d=document.documentElement;
+  try{ const p=(d.requestFullscreen||d.webkitRequestFullscreen).call(d); if(p&&p.catch) p.catch(()=>{}); }catch(e){}
+}
+function exitFS(){ try{ if(inFS()){ const p=(document.exitFullscreen||document.webkitExitFullscreen).call(document); if(p&&p.catch) p.catch(()=>{}); } }catch(e){} }
+
+/* =====================================================================
+   UJIAN
+   ===================================================================== */
+function beginExam(){
+  active=true; document.body.classList.add('exam');
+  ignoreUntil=Date.now()+3000;
+  const hearts=el('div',{class:'chip hearts',id:'hearts',title:'Kesempatan tersisa'});
+  const timer=el('span',{id:'timer'});
+  const bar=el('div',{class:'xbar'},
+    el('div',{class:'who'},el('b',{},S.nama),el('span',{},'Kelas '+S.kelas+' • Absen '+S.absen)),
+    el('div',{class:'chip',id:'prog'}),hearts,
+    el('div',{class:'chip timer',id:'timerchip'},'⏱ ',timer));
+  const nav=el('aside',{class:'card nav noselect'},
+    el('h3',{},'Daftar Soal'),el('div',{class:'ngrid',id:'ngrid'}),
+    el('div',{class:'legend'},
+      el('span',{},el('i',{style:'background:#fff'}),'Belum'),
+      el('span',{},el('i',{style:'background:var(--pri)'}),'Terjawab'),
+      el('span',{},el('i',{style:'background:var(--warn)'}),'Ragu-ragu')),
+    el('button',{class:'btn ok',style:'width:100%',onclick:confirmFinish},'✔ Kumpulkan Jawaban'));
+  mount(el('div',{},bar,el('div',{class:'pbar'},el('i',{id:'pfill'})),
+    el('main',{class:'xwrap'},el('section',{class:'card q noselect',id:'qcard'}),nav)));
+  renderHearts(); renderNav(); renderQuestion();
+  clearInterval(tm); tick(); tm=setInterval(tick,500);
+}
+function tick(){
+  if(!S||S.done) return;
+  const rem=S.start+C.durasiMenit*60000-Date.now();
+  if(rem<=0){ finish('waktu'); return; }
+  const t=$('#timer'); if(!t) return;
+  t.textContent=mmss(rem);
+  $('#timerchip').classList.toggle('low',rem<5*60000);
+}
+function renderHearts(){
+  const sisa=Math.max(0,C.maksPelanggaran-S.viol.length);
+  const h=$('#hearts'); if(!h) return;
+  h.textContent='';
+  for(let i=0;i<C.maksPelanggaran;i++) h.append(i<sisa?'❤️':'🖤');
+}
+function renderNav(){
+  const g=$('#ngrid'); if(!g) return;
+  g.replaceChildren(...S.order.map((id,i)=>el('button',{type:'button',
+    class:'nb'+(isAnswered(id)?' ans':'')+(S.flag[id]?' flg':'')+(i===S.cur?' cur':''),
+    onclick:()=>{S.cur=i;persist();renderNav();renderQuestion();}},i+1)));
+  const done=S.order.filter(isAnswered).length;
+  $('#prog').textContent='Terjawab '+done+' / '+S.order.length;
+  $('#pfill').style.width=(done/S.order.length*100)+'%';
+}
+function setAns(id,v){ S.ans[id]=v; persist(); renderNav(); }
+
+function renderQuestion(){
+  const id=S.order[S.cur],it=BY[id],box=$('#qcard');
+  const n=S.order.length;
+  const parts=[
+    el('div',{class:'qhead'},el('span',{class:'qno'},'Soal '+(S.cur+1)+' dari '+n),
+      el('span',{class:'tag sec'},SEC[it.type]),
+      ),
+    it.stim&&el('div',{class:'stim'},it.stim),
+    el('div',{class:'qtext'},it.q)
+  ];
+  if(it.type==='pg'){
+    parts.push(el('div',{class:'hint'},'Pilih satu jawaban yang paling tepat.'));
+    parts.push(el('div',{class:'opts'},S.opt[id].map((oi,pos)=>{
+      const sel=S.ans[id]===oi;
+      const inp=el('input',{type:'radio',name:'o',checked:sel});
+      const lab=el('label',{class:'opt'+(sel?' sel':'')},inp,el('span',{class:'lt'},'ABCDE'[pos]),el('span',{class:'tx'},it.o[oi]));
+      inp.addEventListener('change',()=>{ setAns(id,oi); lab.parentNode.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel')); lab.classList.add('sel'); });
+      return lab;
+    })));
+  } else if(it.type==='kompleks'){
+    parts.push(el('div',{class:'hint'},'Pilih '+it.a.length+' jawaban yang benar. Memilih jawaban yang salah dapat mengurangi skor.'));
+    parts.push(el('div',{class:'opts'},S.opt[id].map((oi,pos)=>{
+      const cur=Array.isArray(S.ans[id])?S.ans[id]:[];
+      const sel=cur.indexOf(oi)>-1;
+      const inp=el('input',{type:'checkbox',checked:sel});
+      const lab=el('label',{class:'opt chk'+(sel?' sel':'')},inp,el('span',{class:'lt'},'ABCDE'[pos]),el('span',{class:'tx'},it.o[oi]));
+      inp.addEventListener('change',()=>{
+        let a=Array.isArray(S.ans[id])?S.ans[id].slice():[];
+        a=a.filter(x=>x!==oi); if(inp.checked) a.push(oi);
+        lab.classList.toggle('sel',inp.checked); setAns(id,a);
+      });
+      return lab;
+    })));
+  } else {
+    parts.push(el('div',{class:'hint'},'Pilih pasangan yang tepat untuk setiap pernyataan. Satu jawaban hanya dipakai satu kali.'));
+    const a=S.ans[id]||{}; const selects=[];
+    const sync=()=>{
+      const used=new Set(Object.keys(S.ans[id]||{}).map(k=>S.ans[id][k]));
+      selects.forEach(s=>{ [].forEach.call(s.options,o=>{ if(o.value==='') return; o.disabled=used.has(+o.value)&&s.value!==o.value; }); });
+    };
+    parts.push(el('div',{},S.opt[id].l.map(li=>{
+      const sel=el('select',{},el('option',{value:''},'— pilih jawaban —'),
+        S.opt[id].r.map(ri=>el('option',{value:ri,selected:a[li]===ri},it.pairs[ri][1])));
+      selects.push(sel);
+      const row=el('div',{class:'pair'+(typeof a[li]==='number'?' done':'')},el('div',{class:'pl'},it.pairs[li][0]),sel);
+      sel.addEventListener('change',()=>{
+        const cur=Object.assign({},S.ans[id]||{});
+        if(sel.value==='') delete cur[li]; else cur[li]=+sel.value;
+        row.classList.toggle('done',sel.value!==''); setAns(id,cur); sync();
+      });
+      return row;
+    })));
+    setTimeout(sync,0);
+  }
+  const last=S.cur===n-1;
+  parts.push(el('div',{class:'qfoot'},
+    el('button',{class:'btn gray',disabled:S.cur===0,onclick:()=>go(-1)},'◀ Sebelumnya'),
+    el('button',{class:'btn ghost flag'+(S.flag[id]?' on':''),onclick:function(){S.flag[id]=!S.flag[id];if(!S.flag[id])delete S.flag[id];persist();renderNav();this.classList.toggle('on',!!S.flag[id]);}},'🚩 Ragu-ragu'),
+    last?el('button',{class:'btn ok',onclick:confirmFinish},'Kumpulkan ✔'):el('button',{onclick:()=>go(1),class:'btn'},'Berikutnya ▶')));
+  box.replaceChildren(...parts);
+  window.scrollTo(0,0);
+}
+function go(d){ S.cur=Math.min(S.order.length-1,Math.max(0,S.cur+d)); persist(); renderNav(); renderQuestion(); }
+
+function confirmFinish(){
+  const belum=S.order.filter(id=>!isAnswered(id)).length, ragu=Object.keys(S.flag).length;
+  modal({icon:'📨',title:'Kumpulkan jawaban?',
+    body:[belum?('Masih ada '+belum+' soal yang belum terjawab. '):'Semua soal sudah terjawab. ',ragu?('Ada '+ragu+' soal bertanda ragu-ragu. '):'','Setelah dikumpulkan, jawaban tidak dapat diubah.'],
+    actions:[{t:'Kembali mengerjakan',cls:'gray',fn:closeModal},{t:'Ya, kumpulkan',cls:'ok',fn:()=>finish('selesai')}]});
+}
+
+/* =====================================================================
+   ANTI-CURANG
+   ===================================================================== */
+function violation(jenis){
+  if(!active||!S||S.done) return;
+  const now=Date.now();
+  if(now<ignoreUntil||now-lastViol<1500) return;
+  lastViol=now;
+  S.viol.push({t:now,k:jenis}); persist(); renderHearts();
+  if(S.viol.length>=C.maksPelanggaran){ finish('pelanggaran'); return; }
+  showWarning(jenis);
+}
+function showWarning(jenis,resume){
+  const sisa=C.maksPelanggaran-S.viol.length;
+  modal({icon:'⚠️',title:'Peringatan! Pelanggaran '+S.viol.length+' dari '+C.maksPelanggaran,
+    body:[el('p',{style:'margin:.2rem 0'},'Terdeteksi: '+jenis+'.'),
+      el('p',{style:'font-size:1.6rem;margin:.4rem 0'},'❤️'.repeat(sisa)+'🖤'.repeat(S.viol.length)),
+      el('b',{},sisa===1?'Ini kesempatan TERAKHIR. Satu pelanggaran lagi, ujian dihentikan otomatis.':'Sisa kesempatan: '+sisa+'. Tetap fokus pada halaman ujian.')],
+    actions:[{t:resume?'Lanjutkan ujian':'Saya mengerti, lanjutkan',fn:()=>{closeModal();enterFS();ignoreUntil=Date.now()+2500;}}]});
+}
+document.addEventListener('visibilitychange',()=>{ if(document.hidden) violation('berpindah tab / aplikasi lain'); });
+window.addEventListener('blur',()=>{ const a=document.activeElement; if(a&&a.tagName==='SELECT') return; violation('meninggalkan jendela ujian'); });
+function onFS(){ if(active&&fsOK()&&!inFS()) violation('keluar dari mode layar penuh'); }
+document.addEventListener('fullscreenchange',onFS);
+document.addEventListener('webkitfullscreenchange',onFS);
+document.addEventListener('contextmenu',e=>{ if(active){ e.preventDefault(); toast('Klik kanan dinonaktifkan selama ujian'); } });
+['copy','cut','paste','dragstart'].forEach(ev=>document.addEventListener(ev,e=>{ if(active){ e.preventDefault(); toast('Salin/tempel dinonaktifkan selama ujian'); } }));
+document.addEventListener('keydown',e=>{
+  if(!active) return;
+  const k=(e.key||'').toLowerCase(), ctrl=e.ctrlKey||e.metaKey;
+  if(e.key==='F12'||(ctrl&&e.shiftKey&&['i','j','c'].indexOf(k)>-1)||(ctrl&&k==='u')){ e.preventDefault(); violation('mencoba membuka alat pengembang'); return; }
+  if(ctrl&&['c','v','x','a','p','s','f'].indexOf(k)>-1){ e.preventDefault(); toast('Pintasan keyboard dinonaktifkan selama ujian'); }
+  if(e.key==='PrintScreen'){ try{navigator.clipboard.writeText('');}catch(_){} toast('Tangkapan layar tidak diperbolehkan'); }
+});
+window.addEventListener('beforeunload',e=>{ if(active){ e.preventDefault(); e.returnValue=''; } });
+
+/* =====================================================================
+   SELESAI → simpan hasil
+   ===================================================================== */
+function finish(status){
+  if(!S||S.done) return;
+  S.done=true; active=false; clearInterval(tm); closeModal();
+  const sc=hitung(S), end=Date.now(), batas=S.start+C.durasiMenit*60000;
+  const rec={id:S.id,key:S.key,nama:S.nama,kelas:S.kelas,absen:S.absen,
+    mulai:S.start,selesai:end,durasi:Math.round((Math.min(end,batas)-S.start)/1000),
+    pgBenar:sc.pgBenar,kxBenar:sc.kxBenar,jdBenar:sc.jdBenar,
+    pg:sc.pg,kompleks:sc.kompleks,jodoh:sc.jodoh,nilai:sc.nilai,
+    status:status,pelanggaran:S.viol.length,jenis:S.viol.map(v=>v.k).join('; ')};
+  if(!C.sheetsUrl){ const rs=load(K_RES,[]); rs.push(rec); save(K_RES,rs); }   // mode pusat: tidak disimpan permanen di perangkat siswa
+  del(K_SES); S=null; document.body.classList.remove('exam'); exitFS();
+  queueSheets(rec); viewResult(rec);
+}
+const ket=r=>r.nilai>=C.kkm?'Tuntas':'Belum Tuntas';
+function kode(rec){ const o=Object.assign({},rec); o.sig=fnv([rec.nama,rec.kelas,rec.absen,rec.nilai,rec.pelanggaran,C.garam].join('|')); return 'CBT1.'+btoa(unescape(encodeURIComponent(JSON.stringify(o)))); }
+function buktiPesan(rec){
+  return 'HASIL CBT '+C.mapel+' '+C.tingkat+'\nNama: '+rec.nama+'\nKelas: '+rec.kelas+'\nAbsen: '+rec.absen+'\nNilai: '+rec.nilai+'\nKODE HASIL:\n'+kode(rec);
+}
+function buktiBlock(rec){
+  const msg=buktiPesan(rec);
+  const wa='https://wa.me/'+String(C.waGuru||'').replace(/\D/g,'')+'?text='+encodeURIComponent(msg);
+  const btns=[el('a',{class:'btn ok sm',href:wa,target:'_blank',rel:'noopener'},'💬 Kirim ke WhatsApp guru')];
+  if(C.emailGuru) btns.push(el('a',{class:'btn sm ghost',href:'mailto:'+C.emailGuru+'?subject='+encodeURIComponent('Hasil CBT '+rec.nama+' '+rec.kelas)+'&body='+encodeURIComponent(msg)},'✉ Kirim lewat email'));
+  btns.push(el('button',{class:'btn sm ghost',type:'button',onclick:()=>copyText(msg).then(()=>toast('Disalin — tempel dan kirim ke guru'))},'📋 Salin'));
+  btns.push(el('button',{class:'btn sm ghost',type:'button',onclick:()=>dl(new Blob([msg],{type:'text/plain'}),'Hasil_CBT_'+rec.nama.replace(/[^A-Za-z0-9]+/g,'_')+'_'+rec.kelas+'.txt')},'⬇ Unduh bukti (.txt)'));
+  return el('div',{class:'bukti',id:'bukti'},
+    el('b',{},'📤 Kirim bukti hasil ke guru'),
+    el('p',{class:'hint',style:'margin:.3rem 0 .7rem'},'Nilaimu sudah tersimpan di perangkat ini. Agar pasti sampai ke guru, kirim bukti hasil ini sebelum menutup halaman. Jika terlewat, buka lagi halaman ujian dan pilih “Ambil kembali bukti hasilku”.'),
+    el('div',{style:'display:flex;flex-wrap:wrap;gap:.5rem'},btns),
+    el('div',{class:'codebox',style:'margin-top:.8rem'},msg));
+}
+function recallDlg(){
+  const fn=el('input',{type:'text',placeholder:'Nama lengkap (sama seperti saat ujian)',style:'margin-bottom:.5rem'});
+  const fk=el('select',{style:'width:100%;padding:.7rem;border:1.5px solid var(--line);border-radius:12px;margin-bottom:.5rem'},el('option',{value:''},'— kelas —'),C.daftarKelas.map(k=>el('option',{value:k},k)));
+  const fa=el('input',{type:'number',placeholder:'Nomor absen',inputmode:'numeric'});
+  const err=el('div',{class:'err',style:'display:none;margin-top:.7rem'},'Data tidak ditemukan di perangkat ini. Pastikan memakai perangkat dan browser yang sama saat ujian.');
+  modal({left:true,icon:'🔎',title:'Ambil kembali bukti hasil',body:[fn,fk,fa,err],actions:[{t:'Tutup',cls:'gray',fn:closeModal},{t:'Cari',fn:()=>{
+    const key=[clean(fn.value).toLowerCase(),fk.value,String(parseInt(fa.value,10)||'')].join('|');
+    const rec=load(K_RES,[]).concat(load(K_OUT,[])).filter(r=>r.key===key).pop();
+    if(!rec){ err.style.display='block'; return; }
+    modal({left:true,icon:'📤',title:'Bukti hasil: '+rec.nama,body:[buktiBlock(rec)],actions:[{t:'Tutup',cls:'gray',fn:closeModal}]});
+  }}]});
+}
+function viewResult(rec){
+  const tuntas=rec.nilai>=C.kkm;
+  const statusBadge=rec.status==='selesai'?null:el('p',{},el('span',{class:'badge '+(rec.status==='pelanggaran'?'bad':'warn')},STATUS[rec.status]),
+    rec.status==='pelanggaran'?el('span',{style:'display:block;margin-top:.4rem;color:var(--mut)'},'Ujian dihentikan karena kesempatan habis. Jawaban yang sudah kamu isi tetap dinilai.'):null);
+  const sheetsInfo=C.sheetsUrl?el('div',{},el('p',{class:'hint',id:'sheetsinfo',style:'font-weight:600'},'⏳ Mengirim nilai ke rekap guru…'),el('button',{class:'btn sm',type:'button',id:'retryBtn',style:'display:none',onclick:()=>kirimPusat(rec)},'🔄 Kirim ulang')):el('p',{class:'hint'},'ℹ️ Penyimpanan pusat belum dihubungkan (mode uji coba): nilai hanya tersimpan di perangkat ini.');
+  const nodes=[el('div',{class:'micon'},rec.status==='pelanggaran'?'🛑':'🎉'),
+    el('h2',{style:'margin:.4rem 0'},rec.status==='pelanggaran'?'Ujian Dihentikan':'Jawaban Tersimpan'),
+    el('p',{style:'margin:.2rem 0'},rec.nama+' • Kelas '+rec.kelas+' • Absen '+rec.absen), statusBadge];
+  if(C.tampilkanNilaiKeSiswa){
+    nodes.push(el('div',{class:'big '+(tuntas?'ok':'bad')},String(rec.nilai)),
+      el('span',{class:'badge '+(tuntas?'ok':'bad')},tuntas?'Tuntas':'Belum tuntas (KKM '+C.kkm+')'),
+      el('table',{class:'t',style:'margin:1.2rem 0 .4rem;text-align:left'},
+        el('tr',{},el('th',{},'Bagian'),el('th',{class:'n'},'Skor'),el('th',{class:'n'},'Maks')),
+        el('tr',{},el('td',{},'A. Pilihan Ganda ('+rec.pgBenar+' dari '+SOAL_PG.length+' benar)'),el('td',{class:'n'},rec.pg),el('td',{class:'n'},MAX.pg)),
+        el('tr',{},el('td',{},'B. PG Kompleks ('+rec.kxBenar+' dari '+SOAL_KOMPLEKS.length+' benar penuh)'),el('td',{class:'n'},rec.kompleks),el('td',{class:'n'},MAX.kompleks)),
+        el('tr',{},el('td',{},'C. Menjodohkan ('+rec.jdBenar+' dari '+SOAL_JODOH.length+' benar penuh)'),el('td',{class:'n'},rec.jodoh),el('td',{class:'n'},MAX.jodoh))));
+  } else nodes.push(el('p',{style:'margin:1.2rem 0'},'Terima kasih! Nilai akan disampaikan oleh guru.'));
+  nodes.push(sheetsInfo);
+  if(C.tampilkanKodeHasil){
+    const bk=buktiBlock(rec); if(C.sheetsUrl) bk.style.display='none';
+    nodes.push(bk);
+  }
+  nodes.push(el('button',{class:'btn',style:'margin-top:1.3rem',onclick:viewWelcome},'Selesai'));
+  mount(el('div',{class:'wrap'},el('div',{class:'card res'},nodes)));
+  if(C.sheetsUrl) kirimPusat(rec);
+}
+
+/* =====================================================================
+   KIRIM KE GOOGLE SHEETS (opsional)
+   ===================================================================== */
+function queueSheets(rec){ if(!C.sheetsUrl) return; const o=load(K_OUT,[]); o.push(rec); save(K_OUT,o); }
+function apiUrl(p){ const q=Object.keys(p).map(k=>encodeURIComponent(k)+'='+encodeURIComponent(p[k])).join('&'); return C.sheetsUrl+(C.sheetsUrl.indexOf('?')>-1?'&':'?')+q; }
+async function getJson(p,ms){
+  const ctl=('AbortController' in window)?new AbortController():null; const t=ctl?setTimeout(()=>ctl.abort(),ms||8000):0;
+  try{ const r=await fetch(apiUrl(p),ctl?{signal:ctl.signal}:{}); return await r.json(); } finally{ clearTimeout(t); }
+}
+async function cekRemote(key){ try{ const j=await getJson({aksi:'cek',key:key},6000); return j&&j.ok?!!j.ada:null; }catch(e){ return null; } }
+async function pingSheets(){ try{ const j=await getJson({aksi:'list',token:C.sheetsToken||''},8000); return j&&j.ok?'ok':(j&&j.err==='token'?'token':'error'); }catch(e){ return 'error'; } }
+let REMOTE=[];
+async function pullSheets(){
+  if(!C.sheetsUrl) return -1;
+  try{
+    const j=await getJson({aksi:'list',token:C.sheetsToken||''},12000);
+    if(!j||!j.ok) return -1;
+    REMOTE=(j.recs||[]).filter(o=>o&&o.id); return REMOTE.length;
+  }catch(e){ return -1; }
+}
+function remoteDelete(p){
+  if(!C.sheetsUrl) return;
+  p.token=C.sheetsToken||'';
+  getJson(p,10000).then(j=>{ if(!j||!j.ok) toast('Gagal menghapus di penyimpanan pusat (periksa token)'); }).catch(()=>toast('Gagal menghubungi penyimpanan pusat'));
+}
+const payload=r=>JSON.stringify({id:r.id,key:r.key,rec:r,header:COLS.slice(1).map(c=>c[0]),baris:COLS.slice(1).map(c=>c[1](r,0))});
+// Kirim satu hasil dan PASTIKAN benar-benar tercatat di pusat (dicek ulang), dengan percobaan ulang otomatis.
+async function kirimRekam(rec){
+  for(let t=0;t<5;t++){
+    try{ await fetch(C.sheetsUrl,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:payload(rec)}); }catch(e){}
+    if(await cekRemote(rec.key)===true) return true;
+    await new Promise(res=>setTimeout(res,1200*(t+1)+rnd(800)));
+  }
+  return false;
+}
+let flushing=null;
+function flushOutbox(){
+  if(!C.sheetsUrl) return Promise.resolve(true);
+  if(flushing) return flushing;
+  const p=(async()=>{
+    const out=load(K_OUT,[]), rest=[];
+    for(const r of out){ if(!(await kirimRekam(r))) rest.push(r); }
+    const baru=load(K_OUT,[]).filter(x=>!out.some(o=>o.id===x.id));
+    save(K_OUT,rest.concat(baru)); return rest.length===0;
+  })();
+  flushing=p; p.then(()=>{flushing=null;},()=>{flushing=null;});
+  return p;
+}
+function kirimPusat(rec){
+  const set=t=>{ const s=$('#sheetsinfo'); if(s) s.textContent=t; };
+  const rb=$('#retryBtn'), bk=$('#bukti');
+  set('⏳ Mengirim nilai ke rekap guru…'); if(rb) rb.style.display='none';
+  flushOutbox().then(ok=>{
+    set(ok?'✅ Nilai sudah masuk ke rekap guru. Terima kasih!':'⚠️ Nilai belum terkirim. Pastikan internet aktif lalu tekan “Kirim ulang”. Jangan tutup halaman ini.');
+    if(rb) rb.style.display=ok?'none':'inline-block';
+    if(bk) bk.style.display=ok?'none':'block';
+  });
+}
+window.addEventListener('online',flushOutbox);
+setInterval(()=>{ if(C.sheetsUrl&&load(K_OUT,[]).length) flushOutbox(); },30000);
+
+/* =====================================================================
+   PANEL GURU
+   ===================================================================== */
+const COLS=[
+  ['No',(r,i)=>i+1],
+  ['Nama',r=>r.nama],
+  ['Kelas',r=>r.kelas],
+  ['No. Absen',r=>Number(r.absen)],
+  ['Tanggal',r=>tgl(r.mulai)],
+  ['Jam Mulai',r=>jam(r.mulai)],
+  ['Durasi (menit)',r=>r1(r.durasi/60)],
+  ['PG (maks '+MAX.pg+')',r=>r.pg],
+  ['PG Kompleks (maks '+MAX.kompleks+')',r=>r.kompleks],
+  ['Menjodohkan (maks '+MAX.jodoh+')',r=>r.jodoh],
+  ['Nilai Akhir',r=>r.nilai],
+  ['Keterangan',r=>ket(r)],
+  ['Status',r=>STATUS[r.status]||r.status],
+  ['Pelanggaran',r=>r.pelanggaran]
+];
+function askTeacher(mode){
+  const inp=el('input',{type:'password',placeholder:'Kata sandi guru',autocomplete:'off'});
+  const err=el('div',{class:'err',style:'display:none;margin-top:.7rem'},'Kata sandi salah.');
+  const ok=()=>{ if(inp.value===C.passwordGuru){ closeModal(); if(mode==='download') quickDownload(); else viewTeacher(); } else { err.style.display='block'; inp.select(); } };
+  inp.addEventListener('keydown',e=>{ if(e.key==='Enter') ok(); });
+  modal({icon:'🔐',title:'Panel Guru',body:[inp,err],actions:[{t:'Batal',cls:'gray',fn:closeModal},{t:'Masuk',fn:ok}]});
+  setTimeout(()=>inp.focus(),50);
+}
+function copyText(text,html){
+  return new Promise(res=>{
+    const legacy=()=>{ const t=el('textarea',{style:'position:fixed;opacity:0'}); t.value=text; document.body.append(t); t.select(); try{document.execCommand('copy');}catch(e){} t.remove(); res(); };
+    try{
+      if(html&&window.ClipboardItem&&navigator.clipboard&&navigator.clipboard.write){
+        navigator.clipboard.write([new ClipboardItem({'text/plain':new Blob([text],{type:'text/plain'}),'text/html':new Blob([html],{type:'text/html'})})]).then(res,legacy);
+      } else if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(res,legacy); }
+      else legacy();
+    }catch(e){ legacy(); }
+  });
+}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function viewTeacher(){
+  active=false; document.body.classList.remove('exam');
+  let fKelas='',fCari='';
+  const root=el('div',{class:'tp'});
+  const body=el('div');
+  function rows(){
+    const all=C.sheetsUrl?REMOTE:load(K_RES,[]);
+    return all.filter(r=>(!fKelas||r.kelas===fKelas)&&(!fCari||r.nama.toLowerCase().indexOf(fCari.toLowerCase())>-1))
+      .sort((a,b)=>a.kelas.localeCompare(b.kelas)||(Number(a.absen)-Number(b.absen))||a.mulai-b.mulai);
+  }
+  const matrix=rs=>[COLS.map(c=>c[0])].concat(rs.map((r,i)=>COLS.map(c=>c[1](r,i))));
+  const fname=ext=>{const d=new Date();return 'Rekap_Nilai_Informatika_Kelas9'+(fKelas?'_'+fKelas:'')+'_'+d.getFullYear()+pad2(d.getMonth()+1)+pad2(d.getDate())+'.'+ext;};
+  function draw(){
+    const rs=rows(), nil=rs.map(r=>r.nilai);
+    const avg=nil.length?r1(nil.reduce((a,b)=>a+b,0)/nil.length):'–';
+    const tuntas=rs.filter(r=>r.nilai>=C.kkm).length;
+    body.replaceChildren(
+      el('div',{class:'stats'},
+        [['Peserta',rs.length],['Rata-rata',avg],['Tertinggi',nil.length?Math.max.apply(null,nil):'–'],['Terendah',nil.length?Math.min.apply(null,nil):'–'],['Tuntas',rs.length?tuntas+' ('+Math.round(tuntas/rs.length*100)+'%)':'–'],['Dihentikan',rs.filter(r=>r.status==='pelanggaran').length]]
+          .map(s=>el('div',{class:'card stat'},el('b',{},s[1]),el('span',{},s[0])))),
+      el('div',{class:'card pad'},
+        el('div',{class:'tscroll'},rs.length?el('table',{class:'t',id:'rekap'},
+          el('thead',{},el('tr',{},COLS.map(c=>el('th',{},c[0])),el('th',{class:'noprint'},'Aksi'))),
+          el('tbody',{},rs.map((r,i)=>el('tr',{},
+            COLS.map((c,ci)=>{ const v=c[1](r,i); const cls=ci===12?'st-'+r.status:(typeof v==='number'?'n':''); return el('td',{class:cls,title:ci===13&&r.jenis?r.jenis:null},v); }),
+            el('td',{class:'noprint'},el('button',{class:'btn sm gray',title:'Hapus agar siswa dapat mengulang',onclick:()=>{
+              modal({icon:'🗑️',title:'Hapus nilai ini?',body:r.nama+' ('+r.kelas+'). Siswa akan dapat mengerjakan ulang.',actions:[{t:'Batal',cls:'gray',fn:closeModal},{t:'Hapus',cls:'bad',fn:()=>{ save(K_RES,load(K_RES,[]).filter(x=>x.id!==r.id)); save(K_OUT,load(K_OUT,[]).filter(x=>x.id!==r.id)); REMOTE=REMOTE.filter(x=>x.id!==r.id); remoteDelete({aksi:'hapus',id:r.id}); closeModal(); draw(); }}]});
+            }},'Hapus')))))
+        ):el('div',{class:'empty'},'Belum ada data nilai di perangkat ini.',el('br'),C.sheetsUrl?'Nilai dari semua perangkat akan muncul di sini otomatis setelah siswa selesai. Tekan “Muat Ulang Rekap” untuk memperbarui.':'Nilai muncul di sini setelah siswa menyelesaikan ujian di perangkat ini, atau setelah kamu mengimpor kode hasil.'))));
+  }
+  const selKelas=el('select',{onchange:function(){fKelas=this.value;draw();}},el('option',{value:''},'Semua kelas'),C.daftarKelas.map(k=>el('option',{value:k},k)));
+  const cari=el('input',{type:'text',placeholder:'Cari nama…',oninput:function(){fCari=this.value;draw();}});
+  const tools=el('div',{class:'tools'},selKelas,cari,
+    el('button',{class:'btn sm',onclick:()=>{ const m=matrix(rows()); if(m.length<2) return toast('Belum ada data'); const blob=makeXlsx(m,'Rekap Nilai'); dl(blob,fname('xlsx')); }},'⬇ Unduh Excel (.xlsx)'),
+    el('button',{class:'btn sm ghost',onclick:()=>{ const m=matrix(rows()); if(m.length<2) return toast('Belum ada data'); const tsv=m.map(r=>r.join('\t')).join('\n'); const html='<table border="1">'+m.map((r,i)=>'<tr>'+r.map(c=>'<'+(i?'td':'th')+'>'+esc(c)+'</'+(i?'td':'th')+'>').join('')+'</tr>').join('')+'</table>'; copyText(tsv,html).then(()=>toast('Tabel disalin — tempel (Ctrl+V) di Excel / Word / Google Sheets')); }},'📋 Salin Tabel'),
+    el('button',{class:'btn sm ghost',onclick:()=>{ document.body.classList.add('printing'); window.print(); setTimeout(()=>document.body.classList.remove('printing'),500); }},'🖨 Cetak'),
+    C.sheetsUrl&&el('button',{class:'btn sm',onclick:()=>refresh()},'🔄 Muat Ulang Rekap'),
+    el('button',{class:'btn sm ghost',onclick:importDlg},'📥 Impor Hasil Siswa (WA/file)'),
+    el('button',{class:'btn sm bad',onclick:()=>modal({icon:'⚠️',title:'Hapus SEMUA nilai?',body:(C.sheetsUrl?'Semua rekap nilai di penyimpanan pusat akan dihapus dan tidak dapat dikembalikan. Unduh dulu bila perlu.':'Semua rekap nilai di perangkat ini akan dihapus dan tidak dapat dikembalikan. Unduh dulu bila perlu.'),actions:[{t:'Batal',cls:'gray',fn:closeModal},{t:'Hapus semua',cls:'bad',fn:()=>{del(K_RES);del(K_OUT);REMOTE=[];remoteDelete({aksi:'hapusSemua'});closeModal();draw();}}]})},'Hapus Semua'));
+  const stat=el('div',{class:'hint',style:'margin:0 0 .8rem'});
+  const refresh=async function(){
+    if(!C.sheetsUrl) return;
+    stat.textContent='⏳ Mengambil rekap dari penyimpanan pusat…';
+    const n=await pullSheets();
+    if(n<0){ const p=await pingSheets(); stat.textContent=p==='token'?'⚠️ Token salah: samakan sheetsToken di index.html dengan TOKEN di skrip Apps Script.':'⚠️ Tidak dapat terhubung ke penyimpanan pusat (periksa sheetsUrl & internet).'; }
+    else stat.textContent='✅ Tersambung ke penyimpanan pusat — '+n+' hasil siswa dimuat ('+jam(Date.now())+').';
+    draw();
+  };
+  stat.textContent=C.sheetsUrl?'':'⚠️ Penyimpanan pusat BELUM dihubungkan: nilai hanya tersimpan di perangkat tempat siswa mengerjakan. Isi sheetsUrl di CONFIG (lihat README) agar semua nilai dari HP/laptop mana pun terekap otomatis di sini.';
+  root.append(el('div',{class:'top'},el('h2',{},'📊 Rekap Nilai — '+C.mapel+' '+C.tingkat),el('button',{class:'btn sm gray',onclick:viewWelcome},'← Kembali')),stat,tools,body);
+  mount(root); draw(); refresh();
+}
+async function quickDownload(){
+  let rs;
+  if(C.sheetsUrl){ toast('Mengambil rekap dari penyimpanan pusat…'); const n=await pullSheets(); if(n<0){ toast('Tidak dapat terhubung ke penyimpanan pusat'); return; } rs=REMOTE.slice(); }
+  else rs=load(K_RES,[]);
+  rs.sort((a,b)=>a.kelas.localeCompare(b.kelas)||(Number(a.absen)-Number(b.absen))||a.mulai-b.mulai);
+  if(!rs.length){ toast('Belum ada data nilai'); return; }
+  const m=[COLS.map(c=>c[0])].concat(rs.map((r,i)=>COLS.map(c=>c[1](r,i))));
+  const d=new Date();
+  dl(makeXlsx(m,'Rekap Nilai'),'Rekap_Nilai_Informatika_Kelas9_'+d.getFullYear()+pad2(d.getMonth()+1)+pad2(d.getDate())+'.xlsx');
+  toast('File nilai diunduh ('+rs.length+' siswa)');
+}
+function dl(blob,name){ const a=el('a',{href:URL.createObjectURL(blob),download:name}); document.body.append(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},1000); }
+function importDlg(){
+  const ta=el('textarea',{placeholder:'Tempel satu atau beberapa kode hasil (satu kode per baris)…'});
+  const fi=el('input',{type:'file',accept:'.txt,text/plain',multiple:true,style:'margin:.5rem 0',onchange:async function(){ for(const f of this.files){ ta.value+='\n'+await f.text(); } toast('File dibaca'); }});
+  modal({left:true,icon:'📥',title:'Impor Hasil Siswa',body:[el('p',{class:'hint'},'Tempel pesan WhatsApp/email dari siswa (boleh banyak sekaligus, langsung salin dari chat), atau pilih file bukti .txt. Kode diawali “CBT1.” akan dikenali otomatis.'),ta,fi],
+    actions:[{t:'Batal',cls:'gray',fn:closeModal},{t:'Impor',fn:async()=>{
+      const rs=C.sheetsUrl?REMOTE.slice():load(K_RES,[]); let ok=0,dup=0,bad=0; const baru=[];
+      const kodeList=ta.value.match(/CBT1\.[A-Za-z0-9+\/=]+/g)||[]; if(!kodeList.length){ toast('Tidak ditemukan kode hasil pada teks'); return; }
+      kodeList.forEach(line=>{
+        try{
+          if(line.indexOf('CBT1.')!==0) throw 0;
+          const o=JSON.parse(decodeURIComponent(escape(atob(line.slice(5)))));
+          const sig=fnv([o.nama,o.kelas,o.absen,o.nilai,o.pelanggaran,C.garam].join('|'));
+          if(o.sig!==sig) throw 0;
+          delete o.sig;
+          if(rs.some(r=>r.id===o.id)) dup++; else { rs.push(o); baru.push(o); ok++; }
+        }catch(e){ bad++; }
+      });
+      closeModal();
+      if(C.sheetsUrl){ toast('Mengirim '+baru.length+' hasil ke penyimpanan pusat…'); for(const o of baru) await kirimRekam(o); } else save(K_RES,rs);
+      viewTeacher(); toast(ok+' diimpor, '+dup+' duplikat, '+bad+' tidak valid');
+    }}]});
+}
+
+/* =====================================================================
+   PEMBUAT FILE .XLSX (tanpa pustaka luar)
+   ===================================================================== */
+const CRCT=(function(){const t=[];for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0;}return t;})();
+function crc32(b){let c=0xFFFFFFFF;for(let i=0;i<b.length;i++)c=CRCT[(c^b[i])&255]^(c>>>8);return (c^0xFFFFFFFF)>>>0;}
+function zipStore(files){
+  const enc=new TextEncoder(),parts=[],cen=[];let off=0;
+  const u16=v=>[v&255,(v>>>8)&255],u32=v=>[v&255,(v>>>8)&255,(v>>>16)&255,(v>>>24)&255];
+  files.forEach(f=>{
+    const nm=enc.encode(f.name),data=enc.encode(f.text),crc=crc32(data),sz=data.length;
+    const lh=[0x50,0x4b,3,4].concat(u16(20),u16(0x0800),u16(0),u16(0),u16(0x21),u32(crc),u32(sz),u32(sz),u16(nm.length),u16(0));
+    parts.push(new Uint8Array(lh),nm,data); cen.push({nm:nm,crc:crc,sz:sz,off:off}); off+=lh.length+nm.length+sz;
+  });
+  let cs=0;
+  cen.forEach(c=>{
+    const h=[0x50,0x4b,1,2].concat(u16(20),u16(20),u16(0x0800),u16(0),u16(0),u16(0x21),u32(c.crc),u32(c.sz),u32(c.sz),u16(c.nm.length),u16(0),u16(0),u16(0),u16(0),u32(0),u32(c.off));
+    parts.push(new Uint8Array(h),c.nm); cs+=h.length+c.nm.length;
+  });
+  parts.push(new Uint8Array([0x50,0x4b,5,6,0,0,0,0].concat(u16(files.length),u16(files.length),u32(cs),u32(off),[0,0])));
+  return new Blob(parts,{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+}
+function colName(i){let s='';i++;while(i>0){const m=(i-1)%26;s=String.fromCharCode(65+m)+s;i=Math.floor((i-1)/26);}return s;}
+const xe=s=>String(s).replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g,'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+function makeXlsx(m,sheet){
+  const widths=m[0].map((h,ci)=>Math.min(40,Math.max(String(h).length*0.9,...m.slice(1).map(r=>String(r[ci]).length))+3));
+  let sd='';
+  m.forEach((r,ri)=>{
+    sd+='<row r="'+(ri+1)+'"'+(ri===0?' ht="32" customHeight="1"':'')+'>';
+    r.forEach((v,ci)=>{
+      const ref=colName(ci)+(ri+1), st=ri===0?1:2;
+      if(typeof v==='number'&&isFinite(v)) sd+='<c r="'+ref+'" s="'+st+'"><v>'+v+'</v></c>';
+      else sd+='<c r="'+ref+'" s="'+st+'" t="inlineStr"><is><t xml:space="preserve">'+xe(v)+'</t></is></c>';
+    });
+    sd+='</row>';
+  });
+  const NS='http://schemas.openxmlformats.org/spreadsheetml/2006/main';
+  const H='<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n';
+  const sheetXml=H+'<worksheet xmlns="'+NS+'"><sheetViews><sheetView workbookViewId="0"><pane ySplit="1" topLeftCell="A2" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews><sheetFormatPr defaultRowHeight="15"/><cols>'+
+    widths.map((w,i)=>'<col min="'+(i+1)+'" max="'+(i+1)+'" width="'+w.toFixed(1)+'" customWidth="1"/>').join('')+'</cols><sheetData>'+sd+'</sheetData></worksheet>';
+  const bd='<border><left style="thin"><color rgb="FFBBBBBB"/></left><right style="thin"><color rgb="FFBBBBBB"/></right><top style="thin"><color rgb="FFBBBBBB"/></top><bottom style="thin"><color rgb="FFBBBBBB"/></bottom><diagonal/></border>';
+  const styles=H+'<styleSheet xmlns="'+NS+'"><fonts count="2"><font><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="11"/><color rgb="FFFFFFFF"/><name val="Calibri"/></font></fonts>'+
+    '<fills count="3"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FF2457D6"/><bgColor indexed="64"/></patternFill></fill></fills>'+
+    '<borders count="2"><border><left/><right/><top/><bottom/><diagonal/></border>'+bd+'</borders>'+
+    '<cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>'+
+    '<cellXfs count="3"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/>'+
+    '<xf numFmtId="0" fontId="1" fillId="2" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center" wrapText="1"/></xf>'+
+    '<xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyBorder="1"/></cellXfs></styleSheet>';
+  return zipStore([
+    {name:'[Content_Types].xml',text:H+'<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/></Types>'},
+    {name:'_rels/.rels',text:H+'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>'},
+    {name:'xl/workbook.xml',text:H+'<workbook xmlns="'+NS+'" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="'+xe(sheet)+'" sheetId="1" r:id="rId1"/></sheets></workbook>'},
+    {name:'xl/_rels/workbook.xml.rels',text:H+'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>'},
+    {name:'xl/styles.xml',text:styles},
+    {name:'xl/worksheets/sheet1.xml',text:sheetXml}
+  ]);
+}
+
+/* =====================================================================
+   INISIALISASI
+   ===================================================================== */
+function init(){
+  try{ if(navigator.storage&&navigator.storage.persist) navigator.storage.persist(); }catch(e){}
+  document.title=C.judul+' — '+C.mapel+' '+C.tingkat;
+  const s=load(K_SES,null);
+  const valid=s&&!s.done&&Array.isArray(s.order)&&s.order.length===ITEMS.length&&s.order.every(id=>BY[id]);
+  if(s&&!valid) del(K_SES);
+  if(valid){
+    S=s;
+    if(Date.now()>=S.start+C.durasiMenit*60000){ finish('waktu'); }
+    else {
+      S.viol.push({t:Date.now(),k:'memuat ulang / menutup halaman ujian'}); persist();
+      if(S.viol.length>=C.maksPelanggaran){ finish('pelanggaran'); }
+      else { beginExam(); showWarning('memuat ulang / menutup halaman ujian',true); }
+    }
+  } else viewWelcome();
+  flushOutbox();
+}
+init();
+})();
+</script>
+</body>
+</html>
